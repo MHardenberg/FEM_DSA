@@ -22,6 +22,7 @@ static inline void printLList(struct LList *list_ptr) {
         printf("%d ", node_ptr->data);
         node_ptr = node_ptr->next;
     }
+    printf("No. items: %li\n", list_ptr->length);
     printf("\n");
 }
 
