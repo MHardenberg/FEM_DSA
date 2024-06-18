@@ -6,6 +6,7 @@
 
 struct Queue {
     struct Node *head_ptr;
+    struct Node *tail_ptr;
     size_t number;
 };
 
