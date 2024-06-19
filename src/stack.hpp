@@ -55,6 +55,9 @@ struct Stack {
 
         // update tail
         this->tail_ptr = this->tail_ptr->prev_ptr;
+        if (!this->tail_ptr) {
+            this->head_ptr = nullptr;
+        }
 
         // release previous tail
         delete lastTail_ptr;
