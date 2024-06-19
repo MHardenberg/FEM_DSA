@@ -19,7 +19,8 @@ int main (int argc, char *argv[]) {
 
     std::cout << "Popping:" << std::endl;
     while (stack.length) {
-        std::cout << '\t' << stack.pop() << " lenght: " << stack.length << std::endl;
+        std::cout << '\t' << stack.pop() << " lenght after pop: "
+            << stack.length << std::endl;
     }
 
     return 0;

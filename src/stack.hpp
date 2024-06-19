@@ -30,28 +30,28 @@ struct Stack {
 
     void push(T data) {
         Node<T> *node_ptr = new Node<T>();
-
-        node_ptr->data = data;
-
         // previous to last tail
         node_ptr->prev_ptr = this->tail_ptr;
+        node_ptr->data = data;
 
         // update tail
         this->tail_ptr = node_ptr;
-
         if (!this->head_ptr) {
             // if this is the first node
             head_ptr = node_ptr;
         }
 
         this->length++;
-
     }
 
     T pop() {
         // extract current tail
         Node<T> *lastTail_ptr = this->tail_ptr;
-        T data = lastTail_ptr->data;
+        T data;
+
+        if (lastTail_ptr) {
+           data = lastTail_ptr->data;
+        }
 
         // update tail
         this->tail_ptr = this->tail_ptr->prev_ptr;
@@ -61,7 +61,6 @@ struct Stack {
         this->length--;
 
         return data;
-
     }
 
     const T *peek() const {
