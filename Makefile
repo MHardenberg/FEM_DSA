@@ -15,3 +15,8 @@ list:
 queue:
 	gcc ./test/test_queue.c ./src/queue.c ./src/llist.c $(flags) $(linker) -o ./bin/test_queue.out -g
 	./bin/test_queue.out
+
+
+stack:
+	g++ ./test/test_stack.cpp ./src/stack.cpp $(flags) $(linker) -o ./bin/test_stack.out -g
+	./bin/test_stack.out
