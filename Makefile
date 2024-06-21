@@ -18,5 +18,10 @@ queue:
 
 
 stack:
-	g++ ./test/test_stack.cpp ./src/stack.cpp $(flags) $(linker) -o ./bin/test_stack.out -g
+	g++ ./test/test_stack.cpp $(flags) $(linker) -o ./bin/test_stack.out -g
 	./bin/test_stack.out
+
+
+alist:
+	g++ ./test/test_alist.cpp $(flags) $(linker) -o ./bin/test_alist.out -g
+	./bin/test_alist.out
