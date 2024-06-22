@@ -25,3 +25,9 @@ stack:
 alist:
 	g++ ./test/test_alist.cpp $(flags) $(linker) -o ./bin/test_alist.out -g
 	./bin/test_alist.out
+
+
+rBuffer:
+	gcc ./test/test_ringBuffer.c $(flags) $(linker) -o ./bin/test_rBuffer.out -g
+	./bin/test_rBuffer.out
+
