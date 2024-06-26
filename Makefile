@@ -31,3 +31,7 @@ rBuffer:
 	gcc ./test/test_ringBuffer.c ./src/dataStructures/ringBuffer.c $(flags) $(linker) -o ./bin/test_rBuffer.out -g
 	./bin/test_rBuffer.out
 
+
+labyrinth:
+	g++ ./test/test_labyrinth.cpp $(flags) $(linker) -o ./bin/test_labyrinth.out -g
+	./bin/test_labyrinth.out
