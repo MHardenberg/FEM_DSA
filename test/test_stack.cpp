@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ostream>
 #include <stdio.h>
-#include "../src/stack.hpp"
+#include "../src/dataStructures/stack.hpp"
 
 
 int main (int argc, char *argv[]) {

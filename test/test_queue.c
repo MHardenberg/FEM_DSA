@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../src/queue.h"
+#include "../src/dataStructures/queue.h"
 
 
 int main() {

@@ -1,4 +1,4 @@
-#include "../src/arrayList.hpp"
+#include "../src/dataStructures/arrayList.hpp"
 #include <iostream>
 #include <ostream>
 #define LOG(desc, x) (std::cout << desc << " " << x << std::endl)

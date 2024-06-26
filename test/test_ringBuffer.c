@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../src/ringBuffer.h"
+#include "../src/dataStructures/ringBuffer.h"
 
 #define LOG(fmt, x) (fprintf(stderr, fmt, x))
 
@@ -12,7 +12,7 @@ int main (int argc, char *argv[]) {
     char *elem = malloc(sizeof(char));
 
 
-    for (size_t i = 0; i < 14; ++i) {
+    for (size_t i = 0; i < 26; ++i) {
         RINGBUFFER_add(rb, &chars[i]);
         RINGBUFFER_peek(rb, elem);
         LOG("peek: %c\t\t", *elem);
@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
     LOG("%s\n", "-------------------------");
 
 
-    for (size_t i = 0; i < 14; ++i) {
+    for (size_t i = 0; i < 26; ++i) {
         if(RINGBUFFER_pop(rb, elem)) {*elem = ' ';};
 
         LOG("pop: %c\t\t", *elem);

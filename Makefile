@@ -8,12 +8,12 @@ bubble:
 
 
 list:
-	gcc ./test/test_llist.c ./src/llist.c  $(flags) $(linker) -o ./bin/test_llist.out -g
+	gcc ./test/test_llist.c ./src/dataStructures/llist.c  $(flags) $(linker) -o ./bin/test_llist.out -g
 	./bin/test_llist.out
 
 
 queue:
-	gcc ./test/test_queue.c ./src/queue.c ./src/llist.c $(flags) $(linker) -o ./bin/test_queue.out -g
+	gcc ./test/test_queue.c ./src/dataStructures/queue.c ./src/dataStructures/llist.c $(flags) $(linker) -o ./bin/test_queue.out -g
 	./bin/test_queue.out
 
 
@@ -28,6 +28,6 @@ alist:
 
 
 rBuffer:
-	gcc ./test/test_ringBuffer.c ./src/ringBuffer.c $(flags) $(linker) -o ./bin/test_rBuffer.out -g
+	gcc ./test/test_ringBuffer.c ./src/dataStructures/ringBuffer.c $(flags) $(linker) -o ./bin/test_rBuffer.out -g
 	./bin/test_rBuffer.out
 
