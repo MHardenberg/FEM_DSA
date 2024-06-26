@@ -19,9 +19,9 @@ int resize_RINGBUFFER(struct RingBuffer *rb, size_t growBy);
 
 int RINGBUFFER_add(struct RingBuffer *rb, void *elem);
 
-void RINGBUFFER_peek(struct RingBuffer *rb, void *elemBuffer);
+int RINGBUFFER_peek(struct RingBuffer *rb, void *elemBuffer);
 
-void RINGBUFFER_pop(struct RingBuffer *rb, void *elemBuffer);
+int RINGBUFFER_pop(struct RingBuffer *rb, void *elemBuffer);
 
 #endif // !RingBuffer_H
 #define RingBuffer_H

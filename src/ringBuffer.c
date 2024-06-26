@@ -82,10 +82,11 @@ int RINGBUFFER_add(struct RingBuffer *rb, void *elem) {
 }
 
 
-void RINGBUFFER_peek(struct RingBuffer *rb, void *elemBuffer) {
-    if (rb->length == 0) {return;}
+int RINGBUFFER_peek(struct RingBuffer *rb, void *elemBuffer) {
+    if (rb->length == 0) {return 1;}
     if (!elemBuffer) {
         fprintf(stderr, "No element buffer provied\n");
+        return 1;
     }
 
     memcpy(
@@ -93,15 +94,17 @@ void RINGBUFFER_peek(struct RingBuffer *rb, void *elemBuffer) {
         (char *)rb->data + rb->head_idx * rb->elementSize,
         rb->elementSize
         );
+
+    return 0;
 }
 
 
-void RINGBUFFER_pop(struct RingBuffer *rb, void *elemBuffer) {
-    if (rb->length == 0) {return;}
+int RINGBUFFER_pop(struct RingBuffer *rb, void *elemBuffer) {
     if (!elemBuffer) {
         fprintf(stderr, "No element buffer provied\n");
-        return;
+        return 1;
     }
+    if (rb->length == 0) {return 1;}
 
     memcpy(
         elemBuffer,
@@ -111,4 +114,6 @@ void RINGBUFFER_pop(struct RingBuffer *rb, void *elemBuffer) {
 
     rb->head_idx = (rb->head_idx + 1) % rb->capacity;
     rb->length--;
+
+    return 0;
 }
