@@ -28,6 +28,6 @@ alist:
 
 
 rBuffer:
-	gcc ./test/test_ringBuffer.c $(flags) $(linker) -o ./bin/test_rBuffer.out -g
+	gcc ./test/test_ringBuffer.c ./src/ringBuffer.c $(flags) $(linker) -o ./bin/test_rBuffer.out -g
 	./bin/test_rBuffer.out
 

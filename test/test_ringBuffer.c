@@ -3,6 +3,8 @@
 
 #define LOG(fmt, x) (fprintf(stderr, fmt, x))
 
+
+
 char chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 int main (int argc, char *argv[]) {
