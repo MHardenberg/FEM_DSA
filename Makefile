@@ -33,5 +33,5 @@ rBuffer:
 
 
 labyrinth:
-	g++ ./test/test_labyrinth.cpp $(flags) $(linker) -o ./bin/test_labyrinth.out -g
+	g++ ./test/test_labyrinth.cpp ./src/labyrinth.cpp $(flags) $(linker) -o ./bin/test_labyrinth.out -g
 	./bin/test_labyrinth.out
