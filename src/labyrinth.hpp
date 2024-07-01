@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <cstring>
-
+#include <iostream>
 
 
 struct Labyrinth {
@@ -21,26 +21,13 @@ struct Labyrinth {
     char &operator()(size_t r, size_t c);
 
     bool &checkVisited(size_t r, size_t c);
+
+    void show() const;
 };
 
-bool walk(Labyrinth *lab, size_t row, size_t col) {
-    // if outside
-    if (row >= lab->rows or col >= lab->cols) {
-        return false;
-    }
 
-    // if visited
-    if (lab->checkVisited(row, col)) {
-        return false;
-    }
-    
-    // if wall
-    
-    // if exit
+bool walk(Labyrinth &lab, size_t row, size_t col);
 
-
-};
-
-void solver();
+void solver(Labyrinth &lab, size_t startRow, size_t startCol);
 
 #endif // !labyrinth_H

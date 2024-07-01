@@ -1,4 +1,3 @@
-#include <cstddef>
 #include <iostream>
 #include "../src/labyrinth.hpp"
 #define LOG(x) (std::cout << x)
@@ -13,15 +12,8 @@ int main (int argc, char *argv[]) {
         "##S#####",
             3, 8);
 
-    for (size_t r = 0; r < lab.rows; ++r) {
-        for (size_t c = 0; c < lab.cols; ++c) {
-            LOG(lab(r,c));
-        }
-        LOGLN("");
-    }
-
-
-
-
+    lab.show();
+    solver(lab, 2, 2);
+    lab.show();
     return 0;
 }
