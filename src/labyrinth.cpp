@@ -1,5 +1,9 @@
 #include "labyrinth.hpp"
 #include <cstring>
+#include <iostream>
+
+#define LOG(x) (std::cout << x)
+#define LOGLN(x) (std::cout << x << std::endl)
 
 
 Labyrinth::Labyrinth(const char * tiles, size_t rows, size_t cols,
@@ -30,7 +34,7 @@ void Labyrinth::show() const {
     for (size_t r = 0; r < this->rows; ++r) {
         for (size_t c = 0; c < this->cols; ++c) {
             size_t pos = (r * this->cols) + c;
-            std::cout << this->tiles[pos];
+            LOG(this->tiles[pos]);
         }
         std::cout << '\n';
     }
@@ -49,17 +53,17 @@ bool &Labyrinth::checkVisited(size_t r, size_t c) {
 }
 
 bool walk(Labyrinth &lab, size_t row, size_t col) {
-    std::cout << "Considering: " << row << " " << col;
+    LOG("Considering: " << row << " " << col);
     // if outside
     if (row >= lab.rows or col >= lab.cols) {
-        std::cout << "  outside" << std::endl;
+        LOGLN("  outside");
         return false;
 
     }
 
     // if visited
     if (lab.checkVisited(row, col)) {
-        std::cout << "  visited" << std::endl;
+        LOGLN("  visited");
         return false;
     } else {   
         lab.checkVisited(row, col) = true;
@@ -68,28 +72,30 @@ bool walk(Labyrinth &lab, size_t row, size_t col) {
     char t = lab(row, col);
     // if wall
     if (t == lab.wallChar) {
-        std::cout << "  wall" << std::endl;
+        LOGLN("  wall");
         return false;
     }
     
     // if exit
     if (t == lab.endChar) {
-        std::cout << "  exit" << std::endl;
+        LOGLN("  exit");
+        lab(row, col) = '*';
+        return true;
+    }
+    
+    LOGLN("");
+    if (
+            walk(lab, row - 1, col) 
+            || walk(lab, row, col + 1) 
+            || walk(lab, row + 1, col) 
+            || walk(lab, row, col - 1)
+            ) {
+        LOGLN("  backtracking");
         lab(row, col) = '*';
         return true;
     }
 
-    std::cout << std::endl;
-    if (
-            walk(lab, row + 1, col) 
-            || walk(lab, row, col + 1) 
-            || walk(lab, row - 1, col) 
-            || walk(lab, row, col - 1)
-            ) {
-        std::cout << "  backtracking" << std::endl;
-        lab(row, col) = '*';
-        return true;
-    }
+    LOGLN("Dead path....");
     return false;
 }
 
