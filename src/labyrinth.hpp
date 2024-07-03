@@ -14,7 +14,7 @@ struct Labyrinth {
     char startChar, endChar, wallChar;
 
     Labyrinth(const char * tiles, size_t rows, size_t cols,
-            char startChar = 'S', char endChar = 'E', char wallChar = 'W');
+            char startChar = 'S', char endChar = 'E', char wallChar = '#');
 
     ~Labyrinth(); 
 

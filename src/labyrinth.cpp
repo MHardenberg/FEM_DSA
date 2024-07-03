@@ -49,36 +49,47 @@ bool &Labyrinth::checkVisited(size_t r, size_t c) {
 }
 
 bool walk(Labyrinth &lab, size_t row, size_t col) {
+    std::cout << "Considering: " << row << " " << col;
     // if outside
     if (row >= lab.rows or col >= lab.cols) {
+        std::cout << "  outside" << std::endl;
         return false;
+
     }
 
     // if visited
     if (lab.checkVisited(row, col)) {
+        std::cout << "  visited" << std::endl;
         return false;
+    } else {   
+        lab.checkVisited(row, col) = true;
     }
-    
-    // show visisted
-    lab.checkVisited(row, col) = true;
 
     char t = lab(row, col);
     // if wall
     if (t == lab.wallChar) {
+        std::cout << "  wall" << std::endl;
         return false;
     }
     
     // if exit
     if (t == lab.endChar) {
-        return true;
-    }
-
-    if (walk(lab, row++, col) or walk(lab, row, col++), 
-        walk(lab, row--, col) or walk(lab, row, col--)) {
+        std::cout << "  exit" << std::endl;
         lab(row, col) = '*';
         return true;
     }
-    
+
+    std::cout << std::endl;
+    if (
+            walk(lab, row + 1, col) 
+            || walk(lab, row, col + 1) 
+            || walk(lab, row - 1, col) 
+            || walk(lab, row, col - 1)
+            ) {
+        std::cout << "  backtracking" << std::endl;
+        lab(row, col) = '*';
+        return true;
+    }
     return false;
 }
 
