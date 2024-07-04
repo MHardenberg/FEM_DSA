@@ -1,4 +1,4 @@
-flags= -fsanitize=address -o0 -Wall -Wpedantic
+flags= -std=c++23 -fsanitize=address -o0 -Wall -Wpedantic
 linker=
 
 bubble:

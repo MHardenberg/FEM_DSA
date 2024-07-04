@@ -5,6 +5,16 @@
 #define LOG(x) (std::cout << x)
 #define LOGLN(x) (std::cout << x << std::endl)
 
+struct Direction {
+    int x, y;
+};
+
+const Direction dirs[] = {
+    {.x = 1, .y = 0,},
+    {.x = 0, .y = 1,},
+    {.x = -1, .y = 0,},
+    {.x = 0, .y = -1,},
+};
 
 Labyrinth::Labyrinth(const char * tiles, size_t rows, size_t cols,
             char startChar, char endChar, char wallChar) {
@@ -84,15 +94,16 @@ bool walk(Labyrinth &lab, size_t row, size_t col) {
     }
     
     LOGLN("");
-    if (
-            walk(lab, row - 1, col) 
-            || walk(lab, row, col + 1) 
-            || walk(lab, row + 1, col) 
-            || walk(lab, row, col - 1)
-            ) {
-        LOGLN("  backtracking");
-        lab(row, col) = '*';
-        return true;
+    for (size_t i = 0; i < 4; ++i) {
+        int newRow = (int)row + dirs[i].x;
+        int newCol = (int)col + dirs[i].y;
+        if (newRow < 0 || newCol < 0) {continue;}
+
+        if (walk(lab, newRow, newCol)) {
+            LOGLN("  backtracking");
+            lab(row, col) = '*';
+            return true;
+        }
     }
 
     LOGLN("Dead path....");
