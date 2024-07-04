@@ -35,3 +35,8 @@ rBuffer:
 labyrinth:
 	g++ ./test/test_labyrinth.cpp ./src/labyrinth.cpp $(flags) $(linker) -o ./bin/test_labyrinth.out -g
 	./bin/test_labyrinth.out
+
+
+quick:
+	g++ ./test/test_quick.cpp $(flags) $(linker) -o ./bin/test_quick.out -g
+	./bin/test_quick.out
