@@ -40,3 +40,8 @@ labyrinth:
 quick:
 	g++ ./test/test_quick.cpp $(flags) $(linker) -o ./bin/test_quick.out -g
 	./bin/test_quick.out
+
+
+tree:
+	g++ ./test/test_tree.cpp $(flags) $(linker) -o ./bin/test_tree.out -g
+	./bin/test_tree.out
