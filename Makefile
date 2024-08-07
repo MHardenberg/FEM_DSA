@@ -1,4 +1,4 @@
-flags= -std=c++23 -fsanitize=address -o0 -Wall -Wpedantic
+flags= -fsanitize=address -o0 -Wall -Wpedantic
 linker=
 
 bubble:
@@ -42,6 +42,6 @@ quick:
 	./bin/test_quick.out
 
 
-tree:
-	g++ ./test/test_tree.cpp $(flags) $(linker) -o ./bin/test_tree.out -g
-	./bin/test_tree.out
+bTree:
+	gcc ./test/test_bTree.c ./src/dataStructures/bTree.c $(flags) $(linker) -o ./bin/test_bTree.out -g
+	./bin/test_bTree.out
