@@ -77,26 +77,84 @@ static void _stepNode(BTreeNode *current, BTreeNode* list[], size_t *idx) {
         return;
     }
 
-    list[*idx] = current;
-    ++(*idx);
-
     if (current->left) {
         _stepNode(current->left, list, idx);
     }
+
+    list[*idx] = current;
+    ++(*idx);
+
     if (current->right) {
         _stepNode(current->right, list, idx);
     }
 }
 
+static void _stepNodePreOrder(
+        BTreeNode *current, BTreeNode* list[], size_t *idx
+        ) {
+    if (current == NULL) {
+        return;
+    }
 
-BTreeNode** BTree_walk(BTree *bTree) {
+    list[*idx] = current;
+    ++(*idx);
+
+
+    if (current->left) {
+        _stepNodePreOrder(current->left, list, idx);
+    }
+
+    if (current->right) {
+        _stepNodePreOrder(current->right, list, idx);
+    }
+}
+
+static void _stepNodePostOrder(
+        BTreeNode *current, BTreeNode* list[], size_t *idx
+        ) {
+    if (current == NULL) {
+        return;
+    }
+
+    if (current->left) {
+        _stepNodePostOrder(current->left, list, idx);
+    }
+    if (current->right) {
+        _stepNodePostOrder(current->right, list, idx);
+    }
+
+    list[*idx] = current;
+    ++(*idx);
+}
+
+BTreeNode** BTree_walk(BTree *bTree, enum Order order) {
     if (bTree->origin == NULL) {
         return NULL;
     }
 
-    BTreeNode **nodeList = (BTreeNode**)malloc(bTree->size * sizeof(BTreeNode*));
+    BTreeNode **nodeList = 
+        (BTreeNode**)malloc(bTree->size * sizeof(BTreeNode*));
+    if (nodeList == NULL) {
+        return NULL;
+    }
+
     size_t idx = 0;
-    _stepNode(bTree->origin, nodeList, &idx);
+
+
+    switch (order) {
+        case base: {
+            _stepNode(bTree->origin, nodeList, &idx);
+            break;
+                   }
+        case preOrder: {
+            _stepNodePreOrder(bTree->origin, nodeList, &idx);
+            break;
+                   }
+        case postOrder: {
+            _stepNodePostOrder(bTree->origin, nodeList, &idx);
+            break;
+                   }
+    }
 
     return nodeList;
 }
@@ -104,7 +162,7 @@ BTreeNode** BTree_walk(BTree *bTree) {
 
 // free nodes
 void freeBTree(BTree *tree) {
-    BTreeNode** nodeList = BTree_walk(tree);
+    BTreeNode** nodeList = BTree_walk(tree, base);
     for (size_t i = 0; i < tree->size; ++i) {
         free(nodeList[i]);
     }

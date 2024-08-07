@@ -12,24 +12,37 @@ int odering(BTreeNode *x, BTreeNode *y) {
     return 0;
 }
 
-
-int main (int argc, char *argv[]) {
-
-    BTree* tree = create_BTree(&odering);
-
-    int values[] = {0, 1, -1, 2, -2, 3, -3, 4, -4};
-
-    for (size_t i = 0; i < 9; ++i) {
-        BTree_addNode(tree, values[i]);
-    }
-    
-    BTreeNode** nodes = BTree_walk(tree);
+static inline void walk (BTree *tree, enum Order order) {
+    BTreeNode** nodes = BTree_walk(tree, order);
     for (size_t i = 0; i < tree->size; ++i) {
         printf("%lu: ", i);
         printf("%d, \n", nodes[i]->data);
     }
 
     free(nodes);
+}
+
+
+int main (int argc, char *argv[]) {
+
+    BTree* tree = create_BTree(&odering);
+
+    int values[] = {0, -3, -2, -4, 3, 2, 4}; 
+
+    for (size_t i = 0; i < 7; ++i) {
+        BTree_addNode(tree, values[i]);
+    }
+    
+    printf("Base order:\n");
+    walk(tree, base);
+
+    printf("Pre order:\n");
+    walk(tree, preOrder);
+
+    printf("Post order:\n");
+    walk(tree, postOrder);
+    
+
     freeBTree(tree);
     return 0;
 }
