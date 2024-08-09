@@ -19,7 +19,7 @@ int main (int argc, char *argv[]) {
 
     LOGLN("------------------");
     int dest;
-    while(heap.length) {
+    while(heap.length()) {
         for (auto x: heap.data) {
             LOG(x);
             LOGLN("");

@@ -7,30 +7,29 @@
 template<typename T>
 struct MinHeap {
 std::vector<T> data;
-size_t length;
+size_t length() {
+    return this->data.size();
+}
 
 void insert(T value) {
     this->data.push_back(value);
-    this->heapifyUp(this->length);
-    this->length++;
+    this->heapifyUp(this->length() - 1);
 }
 
 void pop(T& dest) {
-    if (this->length == 0) {
+    if (this->length() == 0) {
         return;
     }
 
     dest = this->data[0];
-    if (this->length == 1) {
+    if (this->length() == 1) {
         this->data.pop_back();
-        this->length--;
         return;
     }
 
-    this->data[0] = this->data[this->length - 1];
-    this->length--;
-    this->heapifyDown(0);
+    this->data[0] = this->data[this->length() - 1];
     this->data.pop_back();
+    this->heapifyDown(0);
 }
 
 private:
@@ -64,12 +63,12 @@ private:
      }
 
      void heapifyDown(const size_t currentIdx) {
-         if (currentIdx >= this->length) {
+         if (currentIdx >= this->length()) {
             return;
          }
 
          const size_t lIdx = this->childLeft(currentIdx);
-         if (lIdx >= this->length) {
+         if (lIdx >= this->length()) {
              return;
              // out of children!
          }
@@ -83,7 +82,7 @@ private:
 
          // check if right child exists
          //
-         if (rIdx >= this->length) {
+         if (rIdx >= this->length()) {
              minValue = this->data[lIdx];
              minIdx = lIdx;
          }
