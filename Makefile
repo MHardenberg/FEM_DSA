@@ -45,3 +45,8 @@ bTree:
 heap:
 	g++ ./test/test_heap.cpp $(flags) $(linker) -o ./bin/test_heap.out -g
 	./bin/test_heap.out
+
+
+graph:
+	gcc ./test/test_graphSearch.c $(flags) $(linker) -o ./bin/test_graph.out -g
+	./bin/test_graph.out
